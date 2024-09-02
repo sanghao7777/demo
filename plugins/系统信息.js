@@ -46,12 +46,12 @@ module.exports = async (sender) => {
     }
 };
 
-// 定时任务：每天中午12点自动推送系统信息
+// 定时任务：每天0,,12点自动推送系统信息
 sysMethod.cron.newCron('0 0 0,12 * * *', () => {
     try {
         const systemInfo = getSystemInfo();
         sysMethod.push({
-            platform: 'tgBot',
+            platform: 'tgBot',    //推送的平台
             userId: '1632046106', // 目标用户的Telegram ID
             msg: systemInfo,
             type: 'text',
