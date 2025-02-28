@@ -1,7 +1,5 @@
 DOMAIN-SUFFIX,chsi.com.cn
 DOMAIN-SUFFIX,wmpvp.com
 DOMAIN-SUFFIX,doc.techsel.cn
-DOMAIN-SUFFIX,cqupt.edu.cn
 DOMAIN-KEYWORD,ieee
 DOMAIN-KEYWORD,deepseek
-DOMAIN-KEYWORD,cqupt
