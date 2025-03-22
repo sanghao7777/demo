@@ -3,3 +3,4 @@ DOMAIN-SUFFIX,wmpvp.com
 DOMAIN-SUFFIX,doc.techsel.cn
 DOMAIN-KEYWORD,ieee
 DOMAIN-KEYWORD,deepseek
+DOMAIN-SUFFIX,cnki.net
