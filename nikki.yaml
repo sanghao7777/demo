@@ -1,7 +1,7 @@
 # 机场订阅
 proxy-providers:
   Airport1:
-    url: "http://192.168.5.2:3001/CKg2abstVnOeRpm1aB4G/download/test?target=ClashMeta"
+    url: "机场订阅"
     type: http
     interval: 86400
     health-check:
@@ -102,13 +102,15 @@ proxy-groups:
   - {name: 🤖 AI, type: select, proxies: [AI 节点, 香港 节点, 🚀 默认代理, 直连]}
   - {name: 👨🏿‍💻 GitHub, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
   - {name: 🐬 OneDrive, type: select, proxies: [AI 节点, 香港 节点, 🚀 默认代理, 直连]}
-  - {name: 🪟 Microsoft, type: select, proxies: [直连, AI 节点, 香港 节点, 🚀 默认代理]}
+  - {name: Microsoft, type: select, proxies: [直连, AI 节点, 香港 节点, 🚀 默认代理]}
   - {name: 🎵 TikTok, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
   - {name: 📲 Telegram, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
+  - {name: cloudflare, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
   - {name: 🎥 NETFLIX, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
   - {name: ✈️ Speedtest, type: select, proxies: [香港 节点, AI 节点, 🚀 默认代理, 直连]}
   - {name: 💶 PayPal, type: select, proxies: [AI 节点, 香港 节点, 🚀 默认代理, 直连]}
   - {name: 🍎 Apple, type: select, proxies: [直连, AI 节点, 香港 节点, 🚀 默认代理]}
+  - {name: CN_Game, type: select, proxies: [直连, AI 节点, 香港 节点, 🚀 默认代理]}
   - {name: 🎯 直连, type: select, proxies: [直连, 🚀 默认代理]}
   - {name: 🐟 漏网之鱼, <<: *pr}
   - {name: AI 节点, type: select, include-all: true}
@@ -122,16 +124,18 @@ rules:
   - DOMAIN-SUFFIX,qichiyu.com,🚀 默认代理
   - RULE-SET,private_domain,直连
   - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,cngame_domain,CN_Game
   - RULE-SET,proxylite,🚀 默认代理
   - RULE-SET,ai,🤖 AI
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google_domain,🍀 Google
   - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
+  - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,cloudflare_domain,cloudflare
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,paypal_domain,💶 PayPal
   - RULE-SET,gfw_domain,🚀 默认代理
@@ -140,6 +144,7 @@ rules:
   - RULE-SET,google_ip,🍀 Google,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
   - RULE-SET,telegram_ip,📲 Telegram,no-resolve
+  - RULE-SET,cloudflare_ip,cloudflare,no-resolve
   - RULE-SET,cn_ip,🎯 直连
   - MATCH,🐟 漏网之鱼
 
@@ -156,6 +161,7 @@ rule-providers:
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
@@ -166,8 +172,10 @@ rule-providers:
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
-  
+  cngame_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games-cn.mrs"}
+
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"}
