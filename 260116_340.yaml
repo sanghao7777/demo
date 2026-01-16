@@ -109,7 +109,7 @@ proxy-groups:
 
 # 规则匹配
 rules:
-  - AND,((NOT,((OR,((SRC-IP-CIDR,192.168.5.24/32),(SRC-IP-CIDR,192.168.5.4/32),(SRC-IP-CIDR,192.168.5.21/32),(SRC-IP-CIDR,192.168.5.2/32),(SRC-IP-CIDR,192.168.5.27/32),(SRC-IP-CIDR,192.168.5.25/32)))))),直连
+  - NOT,((RULE-SET,local_ips)),直连
   - RULE-SET,private_domain,直连
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,apple_domain,直连
@@ -171,3 +171,15 @@ rule-providers:
   cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"}
 
   apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+  # 定义 local_ips 规则集，除了这些设备走代理，其余全部直连
+  local_ips:
+    type: inline
+    behavior: classical
+    payload:
+      - SRC-IP-CIDR,192.168.5.3/32
+      - SRC-IP-CIDR,192.168.5.24/32
+      - SRC-IP-CIDR,192.168.5.4/32
+      - SRC-IP-CIDR,192.168.5.2/32
+      - SRC-IP-CIDR,192.168.5.27/32
+      - SRC-IP-CIDR,192.168.5.21/32
+
